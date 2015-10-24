@@ -11,22 +11,29 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
     var audioPlayer:AVAudioPlayer!
+    var receivedAudio:RecordedAudio!
+    var audioEngine: AVAudioEngine!
+    var audioFile:AVAudioFile!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3"){
+     /*   if let filePath = NSBundle.mainBundle().pathForResource("my_audio", ofType: "wav"){
             let filePathUrl = NSURL.fileURLWithPath(filePath)
-            do {
-                // The initializer throws an error so lets try and initialize it
-                audioPlayer = try AVAudioPlayer(contentsOfURL: filePathUrl)
-            } catch let error as NSError {
-                // If the initializer threw an error we catch the error and print it out.
-                print(error.localizedDescription)
-            }
-        }
+                    }
         else{
             print("The filepath is empty")
+        }
+    */
+        do {
+            // The initializer throws an error so lets try and initialize it
+            audioPlayer = try AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl)
+            audioPlayer.enableRate = true
+            audioEngine = AVAudioEngine()
+            audioFile = try! AVAudioFile(forReading: receivedAudio.filePathUrl)
+        } catch let error as NSError {
+            // If the initializer threw an error we catch the error and print it out.
+            print(error.localizedDescription)
         }
     }
 
@@ -35,11 +42,53 @@ class PlaySoundsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+  
+
     @IBAction func PlaySlow(sender: AnyObject) {
+        audioPlayer.stop()
+        audioPlayer.rate = 0.5
+        audioPlayer.currentTime = 0.0
         audioPlayer.play()
     }
-
-    @IBAction func PlayNormal(sender: AnyObject) {
+    
+    @IBAction func PlayFast(sender: AnyObject) {
+        audioPlayer.stop()
+        audioPlayer.rate = 2.0
+        audioPlayer.currentTime = 0.0
+        audioPlayer.play()
+    }
+    
+    @IBAction func PlayChipMunk(sender: AnyObject) {
+        playAudioWithVariablePitch(1000)
+    }
+    
+    @IBAction func PlayDarthVader(sender: AnyObject) {
+        playAudioWithVariablePitch(-1000)
+    }
+    
+    func playAudioWithVariablePitch(pitch: Float){
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        
+        let audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        let changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = pitch
+        audioEngine.attachNode(changePitchEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        try! audioEngine.start()
+        
+        audioPlayerNode.play()
+    }
+    @IBAction func PlayStop(sender: AnyObject) {
+        audioPlayer.stop()
+        audioEngine.stop()
     }
     /*
     // MARK: - Navigation

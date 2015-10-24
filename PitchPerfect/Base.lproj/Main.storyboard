@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
-        <!--Record-->
+        <!--Recording-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RecordSoundsViewController" customModule="PitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -35,7 +35,6 @@
                                 </variation>
                                 <connections>
                                     <action selector="Stop:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2fV-Ua-UkZ"/>
-                                    <segue destination="L05-Hq-u56" kind="show" id="VGe-7L-Q03"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording in progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oXt-8L-d1d">
@@ -64,16 +63,17 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Record" id="XPT-5z-tQj"/>
+                    <navigationItem key="navigationItem" title="Recording" id="XPT-5z-tQj"/>
                     <connections>
                         <outlet property="RecordButton" destination="8YG-Ce-PXG" id="hAT-Mr-fqg"/>
                         <outlet property="RecordInProgress" destination="oXt-8L-d1d" id="LXB-Il-9X0"/>
                         <outlet property="StopButton" destination="5wX-Tq-m2I" id="CLF-QW-zwf"/>
+                        <segue destination="L05-Hq-u56" kind="show" identifier="stopRecording" id="MK3-EW-DbO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1162.5" y="295"/>
+            <point key="canvasLocation" x="1155" y="158"/>
         </scene>
         <!--Play Sounds View Controller-->
         <scene sceneID="fHd-Vh-hHR">
@@ -87,56 +87,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-P8-WkS">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpl-IH-jLR">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="Chipmunk"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="266" y="285" width="46" height="30"/>
-                                </variation>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpl-IH-jLR">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="71" y="285" width="46" height="30"/>
-                                </variation>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ydx-s2-365">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="266" y="167" width="46" height="30"/>
+                                    <rect key="frame" x="65" y="285" width="100" height="100"/>
                                 </variation>
                                 <connections>
-                                    <action selector="PlayNormal:" destination="L05-Hq-u56" eventType="touchUpInside" id="meV-q7-NTM"/>
+                                    <action selector="PlayChipMunk:" destination="L05-Hq-u56" eventType="touchUpInside" id="VDo-Fb-gwJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ydx-s2-365">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="PlayFast"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="235" y="124" width="100" height="100"/>
+                                </variation>
+                                <connections>
+                                    <action selector="PlayFast:" destination="L05-Hq-u56" eventType="touchUpInside" id="h2V-Jz-JwX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kXg-k6-Ycj">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" image="PlaySlow"/>
                                 <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="70" y="124" width="100" height="100"/>
+                                    <rect key="frame" x="65" y="124" width="100" height="100"/>
                                 </variation>
                                 <connections>
-                                    <action selector="PlayFast:" destination="L05-Hq-u56" eventType="touchUpInside" id="ljB-0R-L3l"/>
+                                    <action selector="PlaySlow:" destination="L05-Hq-u56" eventType="touchUpInside" id="LPq-YA-fri"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cp3-kP-rjV">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="stop2"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="175" y="484" width="50" height="50"/>
+                                </variation>
+                                <connections>
+                                    <action selector="PlayStop:" destination="L05-Hq-u56" eventType="touchUpInside" id="7pI-bl-JAM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-P8-WkS">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="DarthVader"/>
+                                <variation key="widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="235" y="285" width="100" height="100"/>
+                                </variation>
+                                <connections>
+                                    <action selector="PlayDarthVader:" destination="L05-Hq-u56" eventType="touchUpInside" id="r7l-ge-ztY"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.85098046059999999" green="0.90980398650000005" blue="0.95686280729999995" alpha="1" colorSpace="deviceRGB"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="aNG-P8-WkS"/>
                                 <exclude reference="wpl-IH-jLR"/>
                                 <exclude reference="Ydx-s2-365"/>
                                 <exclude reference="kXg-k6-Ycj"/>
+                                <exclude reference="Cp3-kP-rjV"/>
+                                <exclude reference="aNG-P8-WkS"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="aNG-P8-WkS"/>
                                 <include reference="wpl-IH-jLR"/>
                                 <include reference="Ydx-s2-365"/>
                                 <include reference="kXg-k6-Ycj"/>
+                                <include reference="Cp3-kP-rjV"/>
+                                <include reference="aNG-P8-WkS"/>
                             </mask>
                         </variation>
                     </view>
@@ -165,8 +183,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Chipmunk" width="100" height="100"/>
+        <image name="DarthVader" width="100" height="100"/>
+        <image name="PlayFast" width="100" height="100"/>
         <image name="PlaySlow" width="100" height="100"/>
         <image name="record" width="100" height="100"/>
         <image name="stop" width="50" height="50"/>
+        <image name="stop2" width="50" height="50"/>
     </resources>
 </document>

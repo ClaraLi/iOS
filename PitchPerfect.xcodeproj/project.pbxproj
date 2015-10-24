@@ -14,6 +14,8 @@
 		8D3254E41BDB203300B2D7E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D3254E21BDB203300B2D7E8 /* LaunchScreen.storyboard */; };
 		8D3254EF1BDB203300B2D7E8 /* PitchPerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3254EE1BDB203300B2D7E8 /* PitchPerfectTests.swift */; };
 		8D3254FA1BDB203300B2D7E8 /* PitchPerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3254F91BDB203300B2D7E8 /* PitchPerfectUITests.swift */; };
+		8D3255081BDB2E6400B2D7E8 /* PlaySoundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3255071BDB2E6400B2D7E8 /* PlaySoundsViewController.swift */; };
+		8D32550A1BDB318E00B2D7E8 /* movie_quote.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8D3255091BDB318E00B2D7E8 /* movie_quote.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		8D3254F51BDB203300B2D7E8 /* PitchPerfectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PitchPerfectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D3254F91BDB203300B2D7E8 /* PitchPerfectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchPerfectUITests.swift; sourceTree = "<group>"; };
 		8D3254FB1BDB203300B2D7E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D3255071BDB2E6400B2D7E8 /* PlaySoundsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundsViewController.swift; sourceTree = "<group>"; };
+		8D3255091BDB318E00B2D7E8 /* movie_quote.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = movie_quote.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				8D3254D91BDB203300B2D7E8 /* AppDelegate.swift */,
 				8D3254DB1BDB203300B2D7E8 /* ViewController.swift */,
 				8D3254DD1BDB203300B2D7E8 /* Main.storyboard */,
+				8D3255091BDB318E00B2D7E8 /* movie_quote.mp3 */,
+				8D3255071BDB2E6400B2D7E8 /* PlaySoundsViewController.swift */,
 				8D3254E01BDB203300B2D7E8 /* Assets.xcassets */,
 				8D3254E21BDB203300B2D7E8 /* LaunchScreen.storyboard */,
 				8D3254E51BDB203300B2D7E8 /* Info.plist */,
@@ -234,6 +240,7 @@
 			files = (
 				8D3254E41BDB203300B2D7E8 /* LaunchScreen.storyboard in Resources */,
 				8D3254E11BDB203300B2D7E8 /* Assets.xcassets in Resources */,
+				8D32550A1BDB318E00B2D7E8 /* movie_quote.mp3 in Resources */,
 				8D3254DF1BDB203300B2D7E8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D3254DC1BDB203300B2D7E8 /* ViewController.swift in Sources */,
+				8D3255081BDB2E6400B2D7E8 /* PlaySoundsViewController.swift in Sources */,
 				8D3254DA1BDB203300B2D7E8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

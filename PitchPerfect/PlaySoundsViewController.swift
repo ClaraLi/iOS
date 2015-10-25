@@ -17,14 +17,7 @@ class PlaySoundsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-     /*   if let filePath = NSBundle.mainBundle().pathForResource("my_audio", ofType: "wav"){
-            let filePathUrl = NSURL.fileURLWithPath(filePath)
-                    }
-        else{
-            print("The filepath is empty")
-        }
-    */
+
         do {
             // The initializer throws an error so lets try and initialize it
             audioPlayer = try AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl)
@@ -45,30 +38,34 @@ class PlaySoundsViewController: UIViewController {
   
 
     @IBAction func PlaySlow(sender: AnyObject) {
-        audioPlayer.stop()
-        audioPlayer.rate = 0.5
-        audioPlayer.currentTime = 0.0
-        audioPlayer.play()
+        
+        playAudioWithVariableRate(0.5)
     }
     
     @IBAction func PlayFast(sender: AnyObject) {
-        audioPlayer.stop()
-        audioPlayer.rate = 2.0
-        audioPlayer.currentTime = 0.0
-        audioPlayer.play()
+        
+        playAudioWithVariableRate(2.0)
     }
     
     @IBAction func PlayChipMunk(sender: AnyObject) {
+        
         playAudioWithVariablePitch(1000)
     }
     
     @IBAction func PlayDarthVader(sender: AnyObject) {
+        
         playAudioWithVariablePitch(-1000)
     }
-    
+   
+    func playAudioWithVariableRate(rate: Float){
+        stopAllAudio()
+        audioPlayer.rate = rate
+        audioPlayer.currentTime = 0.0
+        audioPlayer.play()
+    }
+   
     func playAudioWithVariablePitch(pitch: Float){
-        audioPlayer.stop()
-        audioEngine.stop()
+        stopAllAudio()
         audioEngine.reset()
         
         let audioPlayerNode = AVAudioPlayerNode()
@@ -86,18 +83,13 @@ class PlaySoundsViewController: UIViewController {
         
         audioPlayerNode.play()
     }
-    @IBAction func PlayStop(sender: AnyObject) {
+    func stopAllAudio(){
         audioPlayer.stop()
-        audioEngine.stop()
+        audioEngine.stop()    }
+   
+    @IBAction func PlayStop(sender: AnyObject) {
+        stopAllAudio()
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
